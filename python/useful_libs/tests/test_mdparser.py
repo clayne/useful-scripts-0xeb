@@ -1,5 +1,5 @@
 # test_mdparser.py
-from useful_libs.mdparser import parse_markdown
+from useful_libs.markdown.heading_parser import parse_markdown
 
 test_string = """
 # Meta
