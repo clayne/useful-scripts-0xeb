@@ -52,3 +52,7 @@ This script takes a JSON file and prints its structure in a tree format (the val
 ## eval_cpp.py
 
 [eval_cpp](./eval_cpp/) is script that takes a C/C++ expression snippets and evaluates them by compiling and running them.
+
+## dll2proj.py
+
+[dll2proj](./dll2proj/) is a script to convert a DLL file into a Visual Studio project by taking all the exports and creating their respective function stubs (with a dummy signature and implementation).
