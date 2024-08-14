@@ -82,8 +82,6 @@ def generate_mock_project(dll_path, output_dir):
     def_filename, dllfile = create_def_file(dll_path)
 
     # Define the expansion dictionary
-
-
     expansion_dict = {
         "project_name": os.path.splitext(dllfile.dll_name)[0],
         "dll_name": dllfile.dll_name,
@@ -96,7 +94,8 @@ def generate_mock_project(dll_path, output_dir):
         #// Generated on {generation_date} with {generator_name} {generator_version}
         "generation_date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "generator_name": GENERATOR_NAME,
-        "generator_version": GENERATOR_VERSION
+        "generator_version": GENERATOR_VERSION,
+        "cmake_arch": "x64" if dllfile.machine == "X64" else "Win32"    
     }
 
     # Generate files using the expansion dictionary
@@ -112,6 +111,9 @@ def generate_mock_project(dll_path, output_dir):
     
     # Move the DEF file to the output directory, overwriting if it exists
     shutil.move(def_filename, os.path.join(output_dir, def_filename))
+
+    # Done
+    print(f"Mock project generated in '{output_dir}'. Use 'prep-cmake.bat' to prepare the project for building.")
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generates a mock C++ DLL project based on DLL exports.")
