@@ -56,3 +56,7 @@ This script takes a JSON file and prints its structure in a tree format (the val
 ## dll2proj.py
 
 [dll2proj](./dll2proj/) is a script to convert a DLL file into a Visual Studio project by taking all the exports and creating their respective function stubs (with a dummy signature and implementation).
+
+## pyast.py
+
+`pyast.py` analyzes and extracts elements from Python source files using AST parsing. It can dump global functions, variables, classes, and import statements from a specified file.

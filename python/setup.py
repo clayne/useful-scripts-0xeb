@@ -12,6 +12,7 @@ setup(
             'ApplyDiff = ApplyDiff:main',
             'asm_emit = asm_emit:main',
             'html_entities = html_entities:main',
+            'pyast = pyast:main',
             'mdcomdec = mdcomdec:main',
             'parse_vcf = parse_vcf:main',
             'jsontree = jsontree:main',            
