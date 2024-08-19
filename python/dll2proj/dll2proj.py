@@ -1,9 +1,14 @@
+try:
+    import pefile
+except ImportError:
+    print("pefile is not installed. Please run 'pip install pefile' to install it.")
+    exit(1)
+
 import datetime
 from typing import Tuple
 import os
 import argparse
 import shutil
-import pefile
 
 GENERATOR_NAME = "dll2proj"
 GENERATOR_VERSION = "1.0"
@@ -61,8 +66,11 @@ def create_def_file(dll_path) -> Tuple[str, DLLFile]:
     dll_name = os.path.basename(dll_path)
     def_filename = os.path.splitext(dll_name)[0] + ".def"
 
-    # Load the DLL using pefile
-    dllfile = DLLFile(dll_path)
+    try:
+        # Load the DLL using pefile
+        dllfile = DLLFile(dll_path)
+    except Exception as e:
+        return (f'Failed to load DLL: {e!s}', None)
 
     # Write the DEF file
     with open(def_filename, 'w') as def_file:
@@ -80,6 +88,9 @@ def generate_mock_project(dll_path, output_dir):
 
     # Create a DEF file for the DLL
     def_filename, dllfile = create_def_file(dll_path)
+    if not dllfile:
+        print(err := def_filename)
+        return
 
     # Define the expansion dictionary
     expansion_dict = {
